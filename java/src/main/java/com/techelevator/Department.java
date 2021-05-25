@@ -24,4 +24,9 @@ public class Department {
         this.departmentId = departmentId;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

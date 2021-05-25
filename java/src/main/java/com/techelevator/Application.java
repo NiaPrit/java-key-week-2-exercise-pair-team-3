@@ -63,7 +63,7 @@ public class Application {
     private static void printDepartments() {
         System.out.println("------------- DEPARTMENTS ------------------------------");
         for (Department department : departments) {
-            System.out.println(department.getName());
+            System.out.println(department.toString());
         }
     }
 
@@ -93,7 +93,7 @@ public class Application {
     private static void printEmployees() {
         System.out.println("\n------------- EMPLOYEES ------------------------------");
         for (Employee employee : employees) {
-            System.out.println(employee.getFullName() + " (" + employee.getSalary() + ") " + employee.getDepartment().getName());
+            System.out.println(employee.toString());
         }
 
     }
@@ -102,13 +102,15 @@ public class Application {
      * Create the 'TEams' project.
      */
     private static void createTeamsProject() {
-        Project teams = new Project("Teams", "Project Management Software", "10/10/2020", "11/10/2020");
-        List engineering = new ArrayList();
+        Project teams = new Project("TEams", "Project Management Software", "10/10/2020", "11/10/2020");
 
-        engineering.add(employees.get(0));
-        engineering.add(employees.get(1));
+        for (Employee employee : employees) {
+            if (employee.getDepartment().getName().equals("Engineering")) {
+                deptEngineering.add(employee);
+            }
+        }
 
-        teams.setTeamMembers(engineering);
+        teams.setTeamMembers(deptEngineering);
 
         projects.put(teams.getName(), teams);
     }
@@ -118,11 +120,14 @@ public class Application {
      */
     private static void createLandingPageProject() {
         Project landingPage = new Project("Marketing Landing Page", "Lead Capture Landing Page for Marketing", "10/10/2020", "10/17/2020");
-        List marketing = new ArrayList();
 
-        marketing.add(employees.get(2));
+        for (Employee employee : employees) {
+            if (employee.getDepartment().getName().equals("Marketing")) {
+                deptMarketing.add(employee);
+            }
+        }
 
-        landingPage.setTeamMembers(marketing);
+        landingPage.setTeamMembers(deptMarketing);
 
         projects.put(landingPage.getName(), landingPage);
     }
@@ -133,7 +138,7 @@ public class Application {
     private static void printProjectsReport() {
         System.out.println("\n------------- PROJECTS ------------------------------");
         for (Map.Entry<String, Project> project : projects.entrySet()) {
-            System.out.println(project.getKey() + ": " + project.getValue().getTeamMembers().size());
+            System.out.println(project.getValue().toString());
         }
     }
 

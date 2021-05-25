@@ -56,4 +56,9 @@ public class Project {
         this.startDate = startDate;
         this.dueDate = dueDate;
     }
+
+    @Override
+    public String toString() {
+        return this.getName() + ": " + this.getTeamMembers().size();
+    }
 }

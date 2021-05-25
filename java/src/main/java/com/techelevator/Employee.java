@@ -95,4 +95,9 @@ public class Employee {
       double partSalary = salary * percent;
       salary = partSalary + salary;
    }
+
+   @Override
+   public String toString() {
+        return this.getFullName() + " (" + this.getSalary() + ") " + this.department.getName();
+   }
 }
